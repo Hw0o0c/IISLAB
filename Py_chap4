@@ -1,0 +1,8 @@
+import pandas as pd
+
+file_path= 'C:/data/bicycle.csv'
+
+df1 = pd.read_csv(file_path, engine='python', encoding='cp949')
+print(df1)
+
+df1.to_csv('C:/data/bicycle_clone.csv')
