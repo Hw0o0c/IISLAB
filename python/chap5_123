@@ -1,0 +1,13 @@
+import pandas as pd
+
+list_data=pd.Series(['Dog','Cat','Tiger','Lion','Monkey'])
+index = ['0','1','2','3','4']
+
+sd3 = pd.Series(list_data)
+print(sd3)
+
+
+tup_data = ('이순신','1991-03-15','남')
+sd4=pd.Series(tup_data, index = ['이름','생년월일','성별'])
+
+print(sd4)
