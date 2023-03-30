@@ -1,0 +1,8 @@
+import pandas as pd
+
+dict_data = {'a':1,'b':2,'c':3}
+sd2 = pd.Series(dict_data)
+
+print(type(sd2))
+
+print(sd2)
