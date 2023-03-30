@@ -1,0 +1,31 @@
+import pandas
+from bs4 import BeautifulSoup
+import requests
+from openpyxl.workbook import Workbook
+apikey = "1xSknQu8b8nljE2b%2FB%2Bbg7Aw8v50H1L0G9NIt4DFGCHY7%2BR2AuTfrvVzRIu40%2FIVhSoRFsEoa0%2FsyAJeS7SM%2BQ%3D%3D"
+
+api="http://apis.data.go.kr/B551182/pharmacyInfoService/getParmacyBasisList?servicekey=1xSknQu8b8nljE2b%2FB%2Bbg7Aw8v50H1L0G9NIt4DFGCHY7%2BR2AuTfrvVzRIu40%2FIVhSoRFsEoa0%2FsyAJeS7SM%2BQ%3D%3D&pageNo=1&numOfRows=10&sidoCd=110000&sgguCd=110019&emdongNm=%EC%8B%A0%EB%82%B4%EB%8F%99&yadmNm=%EC%98%A8%EB%88%84%EB%A6%AC%EA%B1%B4%EA%B0%95&type=json%APPID={key}"
+
+list_drugs = ["병원명", "종별코드명", "시도명", "주소", "전화번호"]
+i = 0
+for list_drug in list_drugs:
+    url = api.format(list_drugs=list_drug, key=apikey)
+    req = requests.get(url)
+    re = req.text
+    soup = BeautifulSoup(re, 'html.parser')
+
+    yadmnm = soup.find_all('yadmnm')
+
+    sggucdnm = soup.find_all('sggucdnm')
+
+    sidocdnm=soup.find_all('sidocdnm')
+
+    addr = soup.find_all('addr')
+
+    telno = soup.find_all('telno')
+
+print("병원명:", yadmnm)
+print("종별코드명:", sggucdnm)
+print("시도명:", sidocdnm)
+print("주소:", addr)
+print("전화번호:", telno)
